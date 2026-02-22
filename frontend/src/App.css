@@ -1,0 +1,332 @@
+/* App layout — strict palette, no gradients */
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app-header {
+  width: 100%;
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+  padding: 1rem 1.5rem;
+  margin: 0;
+}
+
+.app-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+.app-header-title-block {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  margin: -0.75rem -2rem;
+  cursor: pointer;
+  min-width: 18em;
+  min-height: 2.5em;
+  box-sizing: content-box;
+}
+
+.app-header-title-block:focus {
+  outline: 2px solid var(--color-header-text);
+  outline-offset: 4px;
+}
+
+.app-header h1,
+.app-header-title {
+  margin: 0;
+  color: var(--color-header-text);
+  font-size: 1.5rem;
+}
+
+.app-header-title {
+  display: inline-block;
+  min-width: 1em;
+}
+
+/* Shared UI states */
+.ui-state {
+  padding: 2rem;
+  text-align: center;
+  background-color: var(--color-accent);
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.ui-state p {
+  margin: 0 0 1rem;
+  color: var(--color-text);
+}
+
+.ui-state-spinner {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--color-accent);
+  border-top-color: var(--color-text);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.muted {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* Faceted search */
+.faceted-search {
+  margin-bottom: 2rem;
+}
+
+.faceted-search h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.faceted-search-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.faceted-search-filters input[type="search"] {
+  flex: 1;
+  min-width: 160px;
+}
+
+.faceted-search-results {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.faceted-search-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.25rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 6px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.faceted-search-item:hover {
+  border-color: var(--color-text);
+  background-color: var(--color-accent);
+}
+
+.faceted-search-item.selected {
+  border-color: var(--color-header-bg);
+  background-color: var(--color-accent);
+  color: var(--color-header-bg);
+}
+
+.faceted-search-item-name {
+  display: block;
+  font-weight: 600;
+}
+
+.faceted-search-item-meta {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  margin-top: 0.25rem;
+  opacity: 0.9;
+}
+
+.faceted-search-item.selected .faceted-search-item-meta {
+  color: var(--color-header-bg);
+}
+
+/* Session logger */
+.session-logger {
+  margin-bottom: 2rem;
+}
+
+.session-logger h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.session-logger-start {
+  margin: 1rem 0;
+}
+
+.session-logger-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: var(--color-accent);
+  border-radius: 6px;
+}
+
+.session-logger-meta p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.session-logger-log {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border: 2px solid var(--color-accent);
+  border-radius: 8px;
+  background-color: var(--color-bg);
+}
+
+.session-logger-log h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.session-logger-history,
+.session-logger-current-sets,
+.session-logger-form {
+  margin-top: 1rem;
+}
+
+.session-logger-history h4,
+.session-logger-current-sets h4,
+.session-logger-form h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.session-logger-history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.session-logger-history-list li {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid var(--color-accent);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.session-logger-history-date {
+  min-width: 100px;
+  color: var(--color-text);
+}
+
+.session-logger-history-sets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.set-pill {
+  background-color: var(--color-accent);
+  color: var(--color-header-bg);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.session-logger-current-sets ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.session-logger-form label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.session-logger-form input {
+  margin-left: 0.5rem;
+  width: 5rem;
+}
+
+.session-logger-form button {
+  margin-top: 0.75rem;
+}
+
+/* Attendance calendar */
+.attendance-calendar {
+  margin-bottom: 2rem;
+}
+
+.attendance-calendar h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.attendance-calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.attendance-calendar-title {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.attendance-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  max-width: 320px;
+}
+
+.attendance-calendar-cell {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border-radius: 4px;
+}
+
+.attendance-calendar-header {
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+  font-weight: 600;
+}
+
+.attendance-calendar-empty {
+  background-color: var(--color-accent);
+  opacity: 0.5;
+}
+
+.attendance-calendar-day {
+  background-color: var(--color-accent);
+  color: var(--color-header-bg);
+}
+
+.attendance-calendar-day.worked-out {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  font-weight: 600;
+}
