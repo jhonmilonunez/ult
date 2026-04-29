@@ -19,13 +19,16 @@ export async function apiFetch(path, options = {}) {
     headers: { ...getAuthHeaders(), ...options.headers },
   });
   if (!res.ok) {
-    const err = new Error(res.statusText || 'Request failed');
-    err.status = res.status;
+    let body = null;
     try {
-      err.body = await res.json();
+      body = await res.json();
     } catch {
-      err.body = null;
+      body = null;
     }
+    const message = body?.error || res.statusText || 'Request failed';
+    const err = new Error(message);
+    err.status = res.status;
+    err.body = body;
     throw err;
   }
   const contentType = res.headers.get('content-type');

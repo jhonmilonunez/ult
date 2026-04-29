@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect } from 'react';
 import { SessionLogger } from './components/SessionLogger';
 import { AttendanceCalendar } from './components/AttendanceCalendar';
+import { AuthScreen, logout, getStoredToken } from './components/AuthScreen';
 import './App.css';
 
-const FULL_NAME = 'Untitled Lifting Tracker v0.1';
+const FULL_NAME = 'Untitled Lifting Tracker v0.1.1';
 const SHORT_NAME = 'ULT';
 const TYPE_SPEED_MS = 20;
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(() => !!getStoredToken());
   const [displayText, setDisplayText] = useState(SHORT_NAME);
   const timeoutRef = useRef(null);
   const indexRef = useRef(0);
@@ -40,7 +42,16 @@ function App() {
     setDisplayText(SHORT_NAME);
   };
 
+  const handleLogout = () => {
+    logout();
+    setAuthenticated(false);
+  };
+
   useEffect(() => () => clearTyping(), []);
+
+  if (!authenticated) {
+    return <AuthScreen onAuthenticated={() => setAuthenticated(true)} />;
+  }
 
   return (
     <>
@@ -53,6 +64,9 @@ function App() {
         >
           <h1 className="app-header-title">{displayText}</h1>
         </div>
+        <button type="button" className="app-header-logout" onClick={handleLogout}>
+          Log out
+        </button>
       </header>
       <div className="app">
         <main className="app-main">
